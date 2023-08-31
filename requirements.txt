@@ -1,0 +1,16 @@
+torchio
+nibabel
+numpy
+matplotlib
+torch==1.9.0
+torchvision==0.10.0
+mmcv-full==1.4.7
+mmdet==2.20.0
+ipdb
+opencv-python
+SimpleITK==2.1.1.2
+progressbar
+itk
+scikit-learn
+scikit-image
+scipy
