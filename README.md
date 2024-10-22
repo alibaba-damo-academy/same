@@ -1,5 +1,7 @@
 # Medical image registration with SAM feature
 
+This is the official Pytorch implementation of "SAME++: A Self-supervised Anatomical eMbeddings Enhanced medical image registration framework using stable sampling and regularized transformation".
+
 This is the repo for SAME registration. It contains the following registration methods:
 - Non-learning
     - SAM-Affine 
@@ -70,4 +72,14 @@ python reg_sam_coarse.py -o=results -d=data/processed/AbdomenCTCT --data_shape 1
 python eval_NetInsO_abdomen.py
 ```
 
+
+## Publication
+If you find this repository useful, please cite:
+
+- **SAME++: A Self-supervised Anatomical eMbeddings Enhanced medical image registration framework using stable sampling and regularized transformation**  
+Lin Tian*, [Zi Li*](https://alison-brie.github.io/), Fengze Liu, Xiaoyu Bai, Jia Ge, Le Lu, Marc Niethammer, Xianghua Ye, Ke Yan, Daikai Jin. ArXiv 2023 [eprint arXiv:2311.14986](https://arxiv.org/abs/2311.14986 "eprint arXiv:2311.14986")
+
+- **SAME: Deformable Image Registration based on Self-supervised Anatomical Embeddings**  
+Fengze Liu, Ke Yan, Adam Harrison, Dazhou Guo, Le Lu, Alan Yuille, Lingyun Huang, Guotong Xie, Jing Xiao, Xianghua Ye, Dakai Jin.
+MICCAI 2021 [eprint arXiv:2109.11572](https://arxiv.org/abs/2109.11572 "eprint arXiv:2109.11572")
 
