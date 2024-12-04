@@ -15,9 +15,17 @@ This is the repo for SAME registration. It contains the following registration m
 ## Requirements
 - Anaconda3 with python=3.7
 - Pytorch=1.9.0
-- [SAM: Self-supervised Learning of Pixel-wise Anatomical Embeddings in Radiological Images](https://ieeexplore.ieee.org/document/9760421/) [[repo]](https://github.com/alibaba-damo-academy/self-supervised-anatomical-embedding-v2)
+- SAM [[code]](https://github.com/alibaba-damo-academy/self-supervised-anatomical-embedding-v2) derived from SAM: Self-supervised Learning of Pixel-wise Anatomical Embeddings in Radiological Images (IEEE IMI 2022) [[pdf]](https://ieeexplore.ieee.org/document/9760421/) 
 
 ## Installation
+First install SAM
+```
+pip install -U openmim
+mim install mmcv-full==1.4.7
+cd SAM
+python -m pip install -e .
+```
+Then install SAMReg
 ```
 cd SAME
 pip install -e .
@@ -30,7 +38,9 @@ This repo contains the following folders under root:
 
 
 ## Datasets
-SAMReg provides a base dataset class. To use this dataset class, one needs to organize the folder structure of the dataset as follows with a ‘splits.json’ file attached.  Example file can be found at [demos](demos/).
+SAMReg provides a base dataset class. To use this dataset class, one needs to organize the folder structure of the dataset as follows with a ‘splits.json’ file attached.  
+
+Example preprocess file can be found at [demos](demos/data_preprocess_example.py).
 ```
 root/
 |-- case1/
