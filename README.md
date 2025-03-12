@@ -6,7 +6,7 @@ This is the repo for SAME registration. It contains the following registration m
 - Non-learning
     - SAM-Affine 
     - SAM-Coarse
-    <!-- - SAM-InsOpt -->
+    - SAM-InsOpt
 - Learning
     - SAM-Deform
 
@@ -25,7 +25,7 @@ mim install mmcv-full==1.4.7
 cd SAM
 python -m pip install -e .
 ```
-Then install this repo SAMReg
+Then install the repo SAMReg
 ```
 pip install torch==1.13.1
 git clone https://github.com/alibaba-damo-academy/same.git
@@ -36,7 +36,7 @@ pip install -e .
 ## Repo structures
 This repo contains the following folders under root: 
 - demos: demo code to test SAME on new data.
-- scripts: traing script and training config files.
+- scripts: training script and training config files.
 
 
 
@@ -82,7 +82,7 @@ python scripts/train.py -o=results -d=data/AbdomenCTCT --data_shape 192 160 256 
 ```
 Or, users can either use the training pipeline implemented in [scrips](scripts/) or implement their own training procedure. The included training pipeline provides the following features:
 - Tensorboard integrated
-- Well structed output folder include the tensorboard log, trained weights, plotted figures and a record of the experiment.
+- Well-structured output folder includes the tensorboard log, trained weights, plotted figures, and a record of the experiment.
 
 To use the included training pipeline, one only needs to implement the following functions in a training config class based on the specific training task.
 - make_net(self, inshape)
@@ -93,7 +93,7 @@ To use the included training pipeline, one only needs to implement the following
 
 Multiple sample training config files can be found at [here](scripts/train_config/).
 
-### Inference based on trained SAM-Deform model
+### Inference based on trained SAM-Deform model and SAM-IO
 Users can either use the demo code to test.
 ```
 python eval_NetInsO_abdomen.py
