@@ -6,7 +6,7 @@ This is the repo for SAME registration. It contains the following registration m
 - Non-learning
     - SAM-Affine 
     - SAM-Coarse
-    - SAM-InsOpt
+    <!-- - SAM-InsOpt -->
 - Learning
     - SAM-Deform
 
@@ -18,16 +18,18 @@ This is the repo for SAME registration. It contains the following registration m
 - SAM [[code]](https://github.com/alibaba-damo-academy/self-supervised-anatomical-embedding-v2) derived from SAM: Self-supervised Learning of Pixel-wise Anatomical Embeddings in Radiological Images (IEEE IMI 2022) [[pdf]](https://ieeexplore.ieee.org/document/9760421/) 
 
 ## Installation
-First install SAM
+First install SAM repo
 ```
 pip install -U openmim
 mim install mmcv-full==1.4.7
 cd SAM
 python -m pip install -e .
 ```
-Then install SAMReg
+Then install this repo SAMReg
 ```
-cd SAME
+pip install torch==1.13.1
+git clone https://github.com/alibaba-damo-academy/same.git
+cd same
 pip install -e .
 ```
 
@@ -37,10 +39,17 @@ This repo contains the following folders under root:
 - scripts: traing script and training config files.
 
 
-## Datasets
+
+## Usage example on LearnReg abdomenCTCT dataset
+```
+wget https://learnreg.oss-cn-beijing.aliyuncs.com/dataset/AbdomenCTCTC.zip
+unzip AbdomenCTCTC.zip -d ./data/
+ ```
+
+
+### Prepare dataset
 SAMReg provides a base dataset class. To use this dataset class, one needs to organize the folder structure of the dataset as follows with a ‘splits.json’ file attached.  
 
-Example preprocess file can be found at [demos](demos/data_preprocess_example.py).
 ```
 root/
 |-- case1/
@@ -58,10 +67,20 @@ root/
 |   |-- case1_case3_coarse_phi.npy
 
 ```
+Example files can be found at [data](data/AbdomenCTCT).
 
+### Global Alignment via SAMAffine or SAMCoarse
 
-## Train
-Users can either use the training pipeline implemented in [scrips](scripts/) or implement their own training procedure. The included training pipeline provides the following features:
+```
+python demos/reg_sam_affine.py -o=results/Affine -d=data/AbdomenCTCT --data_shape 192 160 256 --data_phase=train -e=SAMcoarse -g=0
+python demos/reg_sam_coarse.py -o=results/Coarse -d=data/AbdomenCTCT --data_shape 192 160 256 --data_phase=train -e=SAMcoarse -g=0
+```
+
+### Train SAM-Deform from scratch
+```
+python scripts/train.py -o=results -d=data/AbdomenCTCT --data_shape 192 160 256  -e=SAMDeform --train_config=SAMReg/scripts/train_config/train_config_abdomen.py -g=0 --lr=5e-5 --epochs=200 --save_model_period=20
+```
+Or, users can either use the training pipeline implemented in [scrips](scripts/) or implement their own training procedure. The included training pipeline provides the following features:
 - Tensorboard integrated
 - Well structed output folder include the tensorboard log, trained weights, plotted figures and a record of the experiment.
 
@@ -74,11 +93,9 @@ To use the included training pipeline, one only needs to implement the following
 
 Multiple sample training config files can be found at [here](scripts/train_config/).
 
-## Inference
+### Inference based on trained SAM-Deform model
 Users can either use the demo code to test.
 ```
-python reg_sam_affine.py -o=results -d=data/processed/AbdomenCTCT --data_shape 192 160 256 --data_phase=val -e=SAME/affine -g=3 
-python reg_sam_coarse.py -o=results -d=data/processed/AbdomenCTCT --data_shape 192 160 256 --data_phase=val -e=SAME/coarse -g=3 
 python eval_NetInsO_abdomen.py
 ```
 
