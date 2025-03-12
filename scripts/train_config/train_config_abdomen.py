@@ -20,12 +20,8 @@ import voxelmorph as vxm
 
 class train_config:
     def __init__(self):
-        # self.sam_config = "/home/admin/workspace/projects/PointMatch/configs/sam/sam_r18_i3d_fpn_1x_multisets_sgd_T_0.5_half_test.py"
-        # self.sam_weight = "/home/admin/workspace/data/SAM/iter_38000.pth"
-        # self.sam_config = "/home/lizi.li/projects/PointMatch/configs/sam/sam_r18_i3d_fpn_1x_multisets_sgd_T_0.5_half_test.py"
-        # self.sam_weight = "/home/lizi.li/projects/PointMatch/iter_38000.pth"
-        self.sam_config = "/nas/lizi/data/project/SAMReg/demos/configs/sam/sam_r18_i3d_fpn_1x_multisets_sgd_T_0.5_half_test.py"
-        self.sam_weight = "/nas/lizi/data/project/SAM/iter_38000.pth"
+        self.sam_config = "SAMReg/demos/configs/sam/sam_r18_i3d_fpn_1x_multisets_sgd_T_0.5_half_test.py"
+        self.sam_weight = "SAM/iter_38000.pth"
 
         self.embed_cfg = Config.fromfile(self.sam_config)
 
@@ -67,8 +63,7 @@ class train_config:
     def _init_losses(self):
         self.losses = {
             "sim": [LNCCLoss(win=21).loss, 0.01],
-            # "reg": [vxm.losses.Grad('l2', loss_mult=2).loss, 1]
-            "reg": [vxm.losses.Grad('l2', loss_mult=2).loss, 10]  # Low Folding Version Setting
+            "reg": [vxm.losses.Grad('l2', loss_mult=2).loss, 10] 
             }
 
     def train_kernel(self, model, train_batch, device, epoch, exp_folder):
