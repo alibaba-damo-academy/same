@@ -1,6 +1,6 @@
 # Medical image registration with SAM feature
 
-This is the official Pytorch implementation of "SAME++: A Self-supervised Anatomical eMbeddings Enhanced medical image registration framework using stable sampling and regularized transformation".
+This is the official Pytorch implementation of "SAME++: A Self-supervised Anatomical eMbeddings Enhanced medical image registration framework using stable sampling and regularized transformation". If you have any questions, please contact us at alisonbrielee@gmail.com.
 
 This is the repo for SAME registration. It contains the following registration methods:
 - Non-learning
